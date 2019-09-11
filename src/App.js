@@ -28,6 +28,7 @@ class App extends React.Component {
 				q: searchTerm,
 			},
 		});
+		console.log(response.data);
 		this.setState({
 			videos: response.data.items,
 			selectedVideo: response.data.items[0],
