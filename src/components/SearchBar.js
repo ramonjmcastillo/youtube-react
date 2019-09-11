@@ -9,12 +9,30 @@ class SearchBar extends Component {
 		this.state = {
 			searchTerm: '',
 		};
+
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	handleSubmit(evt) {
+		evt.preventDefault();
+		const { searchTerm } = this.state;
+		const { onFormSubmit } = this.props;
+
+		onFormSubmit(searchTerm);
+	}
+
+	handleChange(evt) {
+		this.setState({
+			searchTerm: evt.target.value,
+		});
+	}
+
 	render() {
 		return (
 			<Paper elevation={6} style={{ padding: '25px' }}>
-				<form>
-					<TextField fullWidth label="Search..."></TextField>
+				<form onSubmit={this.handleSubmit}>
+					<TextField onChange={this.handleChange} fullWidth label="Search..." />
 				</form>
 			</Paper>
 		);
